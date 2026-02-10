@@ -21,7 +21,7 @@ describe('AppShell', () => {
     expect(screen.getByText('Izquierda')).toBeInTheDocument();
     expect(screen.getByText('Contenido')).toBeInTheDocument();
 
-    await user.click(screen.getByRole('button', { name: 'Menu' }));
+    await user.click(screen.getByRole('button', { name: 'Menú' }));
     expect(screen.getByText('Derecha')).toBeInTheDocument();
   });
 

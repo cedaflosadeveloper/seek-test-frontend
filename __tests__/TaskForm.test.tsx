@@ -15,8 +15,8 @@ describe('TaskForm', () => {
 
     render(<TaskForm mode="create" onSubmit={onCreate} isLoading={false} />);
 
-    await user.type(screen.getByLabelText(/Titulo/i), 'Nueva tarea');
-    await user.type(screen.getByLabelText(/Descripcion/i), 'Detalle');
+    await user.type(screen.getByLabelText(/T[ií]tulo/i), 'Nueva tarea');
+    await user.type(screen.getByLabelText(/Descripci[oó]n/i), 'Detalle');
     await user.click(screen.getByRole('button', { name: 'Guardar tarea' }));
 
     await waitFor(() =>
@@ -29,7 +29,7 @@ describe('TaskForm', () => {
     await act(async () => {
       resolveCreate!();
     });
-    await waitFor(() => expect(screen.getByLabelText(/Titulo/i)).toHaveValue(''));
+    await waitFor(() => expect(screen.getByLabelText(/T[ií]tulo/i)).toHaveValue(''));
   });
 
   it('submits edited task data', async () => {
@@ -53,8 +53,8 @@ describe('TaskForm', () => {
       />
     );
 
-    await user.clear(screen.getByLabelText(/Titulo/i));
-    await user.type(screen.getByLabelText(/Titulo/i), 'Titulo editado');
+    await user.clear(screen.getByLabelText(/T[ií]tulo/i));
+    await user.type(screen.getByLabelText(/T[ií]tulo/i), 'Titulo editado');
     await user.click(screen.getByRole('button', { name: /Estado/i }));
     await user.click(screen.getByRole('option', { name: /Completada/i }));
     await user.click(screen.getByRole('button', { name: 'Guardar tarea' }));
@@ -103,8 +103,8 @@ describe('TaskForm', () => {
 
     const { container } = render(<TaskForm mode="create" onSubmit={onSubmit} isLoading={false} />);
 
-    await user.type(screen.getByLabelText(/Titulo/i), 'Nueva tarea');
-    await user.type(screen.getByLabelText(/Descripcion/i), 'Detalle');
+    await user.type(screen.getByLabelText(/T[ií]tulo/i), 'Nueva tarea');
+    await user.type(screen.getByLabelText(/Descripci[oó]n/i), 'Detalle');
     await user.click(screen.getByRole('button', { name: 'Guardar tarea' }));
     await waitFor(() => expect(screen.getByRole('button', { name: 'Guardando...' })).toBeDisabled());
     fireEvent.submit(container.querySelector('form')!);

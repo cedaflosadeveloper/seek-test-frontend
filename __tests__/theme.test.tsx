@@ -157,7 +157,7 @@ describe('theme', () => {
       </I18nProvider>
     );
 
-    await user.click(screen.getByRole('button', { name: 'Menu' }));
+    await user.click(screen.getByRole('button', { name: 'Menú' }));
     expect(screen.getByText('Usuario logueado:')).toBeInTheDocument();
     expect(screen.getByText('user1')).toBeInTheDocument();
     expect(screen.getByText('Idioma')).toBeInTheDocument();
@@ -183,7 +183,7 @@ describe('theme', () => {
       </I18nProvider>
     );
 
-    await user.click(screen.getByRole('button', { name: 'Menu' }));
+    await user.click(screen.getByRole('button', { name: 'Menú' }));
     expect(screen.getByText('Usuario logueado:')).toBeInTheDocument();
     expect(screen.getByText('user2')).toBeInTheDocument();
     expect(screen.getByText('Idioma')).toBeInTheDocument();
@@ -195,7 +195,7 @@ describe('theme', () => {
       expect(screen.queryByText('Idioma')).not.toBeInTheDocument();
     });
 
-    await user.click(screen.getByRole('button', { name: 'Menu' }));
+    await user.click(screen.getByRole('button', { name: 'Menú' }));
     fireEvent.keyDown(document, { key: 'Escape' });
     await waitFor(() => {
       expect(screen.queryByText('Idioma')).not.toBeInTheDocument();

@@ -4,7 +4,7 @@ export const messages = {
       title: 'Login',
       usernameLabel: 'Usuario *',
       usernamePlaceholder: 'usuario',
-      passwordLabel: 'Contrasena *',
+      passwordLabel: 'Contraseña *',
       showPassword: 'Mostrar contraseña',
       hidePassword: 'Ocultar contraseña',
       invalidUsersHint: 'Usuarios disponibles para ingresar:',
@@ -17,8 +17,8 @@ export const messages = {
       subtitle: 'Gestiona estado y elimina tareas',
       create: 'Crear tarea',
       createAria: 'Crear tarea',
-      logout: 'Cerrar sesion',
-      logoutAria: 'Cerrar sesion',
+      logout: 'Cerrar sesión',
+      logoutAria: 'Cerrar sesión',
       logoutConfirm: '¿Seguro desea cerrar la sesión del usuario?',
       deleteConfirm: '¿Desea eliminar la tarea?',
       empty: 'No hay tareas. Crea la primera.',
@@ -28,10 +28,10 @@ export const messages = {
       actionError: 'Algo salió mal'
     },
     taskForm: {
-      titleLabel: 'Titulo *',
+      titleLabel: 'Título *',
       titlePlaceholderCreate: 'Nueva tarea',
-      titlePlaceholderEdit: 'Titulo de la tarea',
-      descriptionLabel: 'Descripcion *',
+      titlePlaceholderEdit: 'Título de la tarea',
+      descriptionLabel: 'Descripción *',
       descriptionPlaceholder: 'Detalles y contexto',
       statusLabel: 'Estado *',
       save: 'Guardar tarea',
@@ -47,9 +47,9 @@ export const messages = {
       confirmSave: '¿Desea guardar la tarea?'
     },
     notFound: {
-      title: 'Pagina no encontrada',
+      title: 'Página no encontrada',
       subtitle: '404',
-      message: 'La pagina que buscas no existe.',
+      message: 'La página que buscas no existe.',
       goHome: 'Ir al inicio'
     },
     taskNotFound: {
@@ -58,7 +58,7 @@ export const messages = {
     },
     tasksError: {
       title: 'Tareas',
-      subtitle: 'Algo salio mal',
+      subtitle: 'Algo salió mal',
       message: 'No pudimos cargar las tareas.'
     },
     taskError: {
@@ -78,10 +78,10 @@ export const messages = {
       edit: 'Editar',
       delete: 'Eliminar',
       backToList: 'Volver al listado',
-      confirmation: 'Confirmacion',
+      confirmation: 'Confirmación',
       language: 'Idioma',
-      selectOption: 'Selecciona una opcion',
-      menu: 'Menu',
+      selectOption: 'Selecciona una opción',
+      menu: 'Menú',
       loggedUser: 'Usuario logueado:'
     },
     theme: {
@@ -90,10 +90,10 @@ export const messages = {
       dark: 'Oscuro'
     },
     meta: {
-      appTitle: 'Sistema de Gestion de Tareas',
-      appDescription: 'Aplicacion de tareas con auth y CRUD en tiempo real',
+      appTitle: 'Sistema de Gestión de Tareas',
+      appDescription: 'Aplicación de tareas con auth y CRUD en tiempo real',
       tasksTitle: 'Tareas',
-      tasksDescription: 'Listado y gestion de tareas.',
+      tasksDescription: 'Listado y gestión de tareas.',
       newTaskTitle: 'Nueva tarea',
       newTaskDescription: 'Crear una nueva tarea.',
       editTaskTitle: 'Editar tarea',

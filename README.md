@@ -1,22 +1,22 @@
-# Sistema de Gestion de Tareas
+# Sistema de Gestión de Tareas
 
-Aplicacion de gestion de tareas con Next 16, React 19 y Zustand. Incluye autenticacion con JWT, CRUD de tareas, arquitectura limpia, estilos con SCSS y pruebas unitarias. El frontend consume el backend via API Routes y Server Actions de Next.
+Aplicación de gestión de tareas con Next 16, React 19 y Zustand. Incluye autenticación con JWT, CRUD de tareas, arquitectura limpia, estilos con SCSS y pruebas unitarias. El frontend consume el backend vía API Routes y Server Actions de Next.
 
 ## Requerimientos
 
 Funcionales:
-- Autenticacion con formulario y recepcion de JWT (almacenado como cookie httpOnly).
-- Lista de tareas desde API (titulo, descripcion, estado).
-- Creacion de tareas con formulario.
-- Actualizacion del estado en formulario de edicion.
-- Eliminacion de tareas con confirmacion.
+- Autenticación con formulario y recepción de JWT (almacenado como cookie httpOnly).
+- Lista de tareas desde API (título, descripción, estado).
+- Creación de tareas con formulario.
+- Actualización del estado en formulario de edición.
+- Eliminación de tareas con confirmación.
 
-Tecnicos:
-- Arquitectura limpia y separacion de responsabilidades (SOLID).
+Técnicos:
+- Arquitectura limpia y separación de responsabilidades (SOLID).
 - Patrones: Ports & Adapters, Repository, Factory/Container.
-- Gestion de estado con Zustand.
+- Gestión de estado con Zustand.
 - Pruebas unitarias con cobertura objetivo >= 70%.
-- Integracion con backend via API Routes.
+- Integración con backend vía API Routes.
 - Instrucciones claras para ejecutar y probar.
 
 ## Requisitos
@@ -24,7 +24,7 @@ Tecnicos:
 - Node.js 18 o superior
 - npm
 
-## Instalacion
+## Instalación
 
 ```bash
 npm install
@@ -46,7 +46,7 @@ BACKEND_URL=https://seek-test-api.onrender.com
 
 Si no defines `BACKEND_URL`, se usa `https://seek-test-api.onrender.com` por defecto.
 
-## Como loguearse
+## Cómo iniciar sesión
 
 Las tareas se asocian al usuario autenticado. Credenciales de prueba:
 
@@ -54,7 +54,7 @@ Las tareas se asocian al usuario autenticado. Credenciales de prueba:
 - `user2` / `user1234`
 - `user3` / `user1234`
 
-## Pruebas Unitarias
+## Pruebas unitarias
 
 ```bash
 npm run test
@@ -86,16 +86,32 @@ UI (components/app + app router)
         |
       State (zustand stores)
         |
-     Use Cases (core/usecases)
+    Use Cases (core/usecases)
         |
-     Ports (core/ports)
+    Ports (core/ports)
         |
 Infra (api/http/storage)
         |
 Backend (API NestJS)
 ```
 
-## Autenticacion
+Diagrama de carpetas:
+
+```text
+frontend/
+├── [app] src/app/               -> rutas (App Router), layouts, pages, API routes
+├── [ui] src/components/         -> componentes reutilizables
+├── [core] src/core/             -> dominio, puertos y casos de uso
+├── [infra] src/infra/            -> implementaciones HTTP/API/storage
+├── [state] src/state/            -> stores globales (Zustand)
+├── [styles] src/styles/          -> SCSS por capas
+├── [i18n] src/i18n/              -> internacionalización
+├── [theme] src/theme/            -> manejo de temas (light/dark)
+├── [tests] __tests__/            -> pruebas unitarias
+└── [docs] docs/                  -> documentación generada (JSDoc)
+```
+
+## Autenticación
 
 El login se valida en el backend y el token se guarda como cookie httpOnly. El email del usuario se guarda en cookie y localStorage para hidratar la UI.
 
@@ -103,18 +119,18 @@ El login se valida en el backend y el token se guarda como cookie httpOnly. El e
 
 Las rutas internas viven en `src/app/api` y hacen proxy al backend. Las mutaciones (crear/editar/eliminar) usan Server Actions para mantener el flujo en el servidor.
 
-## Internacionalizacion
+## Internacionalización
 
-La UI soporta español e ingles. Por defecto se toma el idioma del navegador mediante `Accept-Language`. Puedes cambiarlo desde el menu del header y la preferencia se guarda en la cookie `task_app_locale` para mantener tu seleccion.
+La UI soporta español e inglés. Por defecto se toma el idioma del navegador mediante `Accept-Language`. Puedes cambiarlo desde el menú del header y la preferencia se guarda en la cookie `task_app_locale` para mantener tu selección.
 
 ## Temas
 
-El modo claro/oscuro se controla desde el menu de 3 puntos del header. Por defecto se toma el tema del navegador y, cuando eliges uno, se guarda en la cookie `task_app_theme`.
+El modo claro/oscuro se controla desde el menú de 3 puntos del header. Por defecto se toma el tema del navegador y, cuando eliges uno, se guarda en la cookie `task_app_theme`.
 
 ## Scripts
 
 - `dev`: modo desarrollo
-- `build`: build de produccion
+- `build`: build de producción
 - `start`: iniciar build
 - `test`: pruebas unitarias
 - `test:coverage`: cobertura

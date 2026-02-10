@@ -40,7 +40,7 @@ describe('LoginForm', () => {
     expect(button).toBeDisabled();
 
     await user.type(screen.getByLabelText(/Usuario/i), 'user');
-    await user.type(screen.getByLabelText(/Contrasena/i), 'pass');
+    await user.type(screen.getByLabelText(/Contraseñ?a/i), 'pass');
     expect(button).toBeEnabled();
   });
 
@@ -49,7 +49,7 @@ describe('LoginForm', () => {
     render(<LoginForm />);
 
     await user.type(screen.getByLabelText(/Usuario/i), 'user');
-    await user.type(screen.getByLabelText(/Contrasena/i), 'pass');
+    await user.type(screen.getByLabelText(/Contraseñ?a/i), 'pass');
     await user.click(screen.getByRole('button', { name: 'Ingresar' }));
 
     expect((useAuthStore as any)().login).toHaveBeenCalledWith('user', 'pass');
@@ -91,7 +91,7 @@ describe('LoginForm', () => {
     render(<LoginForm />);
 
     await user.type(screen.getByLabelText(/Usuario/i), 'user');
-    await user.type(screen.getByLabelText(/Contrasena/i), 'pass');
+    await user.type(screen.getByLabelText(/Contraseñ?a/i), 'pass');
     await user.click(screen.getByRole('button', { name: 'Ingresar' }));
 
     expect(pushMock).not.toHaveBeenCalled();
@@ -108,7 +108,7 @@ describe('LoginForm', () => {
 
     const { container } = render(<LoginForm />);
     await user.type(screen.getByLabelText(/Usuario/i), 'user');
-    await user.type(screen.getByLabelText(/Contrasena/i), 'pass');
+    await user.type(screen.getByLabelText(/Contraseñ?a/i), 'pass');
     await user.click(screen.getByRole('button', { name: 'Ingresar' }));
 
     await waitFor(() => expect(screen.getByRole('button', { name: 'Ingresando...' })).toBeDisabled());
@@ -124,7 +124,7 @@ describe('LoginForm', () => {
     const user = userEvent.setup();
     render(<LoginForm />);
 
-    const passwordInput = screen.getByLabelText(/Contrasena/i) as HTMLInputElement;
+    const passwordInput = screen.getByLabelText(/Contraseñ?a/i) as HTMLInputElement;
     expect(passwordInput.type).toBe('password');
 
     await user.click(screen.getByRole('button', { name: 'Mostrar contraseña' }));

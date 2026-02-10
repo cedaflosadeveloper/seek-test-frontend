@@ -24,7 +24,7 @@ describe('DeleteConfirmModal', () => {
       />
     );
 
-    expect(screen.getByText('Confirmacion')).toBeInTheDocument();
+    expect(screen.getByText('Confirmación')).toBeInTheDocument();
     await user.click(screen.getByRole('button', { name: 'No' }));
     expect(onCancel).toHaveBeenCalled();
     await user.click(screen.getByRole('button', { name: 'Sí' }));
