@@ -13,6 +13,7 @@ export const messages = {
       subtitle: 'Gestiona estado y elimina tareas',
       create: 'Crear tarea',
       createAria: 'Crear tarea',
+      logout: 'Cerrar sesion',
       logoutAria: 'Cerrar sesion',
       logoutConfirm: '¿Seguro desea cerrar la sesión del usuario?',
       deleteConfirm: '¿Desea eliminar la tarea?',
@@ -75,7 +76,13 @@ export const messages = {
       backToList: 'Volver al listado',
       confirmation: 'Confirmacion',
       language: 'Idioma',
-      selectOption: 'Selecciona una opcion'
+      selectOption: 'Selecciona una opcion',
+      menu: 'Menu'
+    },
+    theme: {
+      label: 'Tema',
+      light: 'Claro',
+      dark: 'Oscuro'
     },
     meta: {
       appTitle: 'Sistema de Gestion de Tareas',
@@ -103,6 +110,7 @@ export const messages = {
       subtitle: 'Manage status and delete tasks',
       create: 'Create task',
       createAria: 'Create task',
+      logout: 'Sign out',
       logoutAria: 'Sign out',
       logoutConfirm: 'Are you sure you want to sign out this user?',
       deleteConfirm: 'Do you want to delete the task?',
@@ -165,7 +173,13 @@ export const messages = {
       backToList: 'Back to list',
       confirmation: 'Confirmation',
       language: 'Language',
-      selectOption: 'Select an option'
+      selectOption: 'Select an option',
+      menu: 'Menu'
+    },
+    theme: {
+      label: 'Theme',
+      light: 'Light',
+      dark: 'Dark'
     },
     meta: {
       appTitle: 'Task Management System',

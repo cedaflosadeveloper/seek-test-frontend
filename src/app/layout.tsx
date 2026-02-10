@@ -3,6 +3,8 @@ import { Space_Grotesk } from 'next/font/google';
 import './globals.scss';
 import { I18nProvider } from '@/i18n/I18nProvider';
 import { getServerI18n, getServerLocale } from '@/i18n/server';
+import { ThemeProvider } from '@/theme/ThemeProvider';
+import { getServerTheme } from '@/theme/server';
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -27,10 +29,13 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const locale = await getServerLocale();
+  const theme = await getServerTheme();
   return (
-    <html lang={locale}>
+    <html lang={locale} data-theme={theme ?? undefined}>
       <body className={spaceGrotesk.variable}>
-        <I18nProvider locale={locale}>{children}</I18nProvider>
+        <I18nProvider locale={locale}>
+          <ThemeProvider initialTheme={theme}>{children}</ThemeProvider>
+        </I18nProvider>
       </body>
     </html>
   );

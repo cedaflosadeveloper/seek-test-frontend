@@ -26,7 +26,41 @@
   @include flex-row(12px, center, flex-end);
 }
 
-.locale-switch {
+.header-menu {
+  position: relative;
+}
+
+.menu-panel {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  min-width: 220px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  box-shadow: var(--shadow);
+  padding: 14px;
+  z-index: 40;
+  display: grid;
+  gap: 12px;
+}
+
+.menu-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.menu-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.menu-switch {
   display: inline-flex;
   gap: 6px;
   padding: 4px;
@@ -35,7 +69,7 @@
   background: var(--card);
 }
 
-.locale-switch-btn {
+.menu-switch-btn {
   border: none;
   background: transparent;
   color: var(--muted);
@@ -47,6 +81,46 @@
   &.active {
     background: var(--bg-accent);
     color: var(--ink);
+  }
+}
+
+.menu-divider {
+  height: 1px;
+  background: var(--border);
+}
+
+.menu-actions {
+  display: grid;
+  gap: 8px;
+}
+
+.menu-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  border-radius: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--ink);
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: translateY(-1px);
+  }
+
+  &.danger {
+    color: #a11d1d;
+  }
+
+  &.danger:hover {
+    border-color: #a11d1d;
+    color: #a11d1d;
   }
 }
 

@@ -105,7 +105,11 @@ Las rutas internas viven en `src/app/api` y hacen proxy al backend. Las mutacion
 
 ## Internacionalizacion
 
-La UI soporta español e ingles. Puedes alternar el idioma desde el switch del header. La preferencia se guarda en la cookie `task_app_locale` y, si no existe, se detecta con `Accept-Language`.
+La UI soporta español e ingles. Por defecto se toma el idioma del navegador mediante `Accept-Language`. Puedes cambiarlo desde el menu del header y la preferencia se guarda en la cookie `task_app_locale` para mantener tu seleccion.
+
+## Temas
+
+El modo claro/oscuro se controla desde el menu de 3 puntos del header. Por defecto se toma el tema del navegador y, cuando eliges uno, se guarda en la cookie `task_app_theme`.
 
 ## Scripts
 

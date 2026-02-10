@@ -1,16 +1,16 @@
-import { LocaleSwitch } from '@/components/common/LocaleSwitch';
+import { HeaderMenu } from '@/components/common/HeaderMenu';
 
 export const AppShell = ({
   title,
   leftSlot,
   subtitle,
-  rightSlot,
+  menuActions,
   children
 }: {
   title: string;
   leftSlot?: React.ReactNode;
   subtitle?: string;
-  rightSlot?: React.ReactNode;
+  menuActions?: React.ReactNode;
   children: React.ReactNode;
 }) => {
   return (
@@ -24,8 +24,7 @@ export const AppShell = ({
           </div>
         </div>
         <div className="header-actions">
-          {rightSlot ? <div>{rightSlot}</div> : null}
-          <LocaleSwitch />
+          <HeaderMenu actions={menuActions} />
         </div>
       </header>
       <main className="app-main">{children}</main>
