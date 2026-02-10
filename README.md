@@ -54,7 +54,7 @@ Las tareas se asocian al usuario autenticado. Credenciales de prueba:
 - `user2` / `user1234`
 - `user3` / `user1234`
 
-## Pruebas
+## Pruebas Unitarias
 
 ```bash
 npm run test
