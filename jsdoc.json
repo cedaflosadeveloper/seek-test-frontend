@@ -1,0 +1,15 @@
+{
+  "source": {
+    "include": ["src"],
+    "includePattern": ".+\\.(ts|tsx)$"
+  },
+  "plugins": ["plugins/markdown", "./jsdoc-ts.cjs"],
+  "opts": {
+    "destination": "docs",
+    "recurse": true
+  },
+  "babel": {
+    "extensions": ["ts", "tsx"],
+    "plugins": ["typescript", "jsx"]
+  }
+}

@@ -1,0 +1,113 @@
+@use 'settings' as *;
+
+.app-shell {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 20px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.app-header {
+  @include flex-row(20px, center, space-between);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 16px;
+
+  nav {
+    display: flex;
+    gap: 16px;
+    font-weight: 600;
+    flex-wrap: wrap;
+  }
+}
+
+.header-actions {
+  @include flex-row(12px, center, flex-end);
+}
+
+.locale-switch {
+  display: inline-flex;
+  gap: 6px;
+  padding: 4px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+
+.locale-switch-btn {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+
+  &.active {
+    background: var(--bg-accent);
+    color: var(--ink);
+  }
+}
+
+.header-left {
+  @include flex-row(12px);
+}
+
+.header-titles {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.header-user {
+  @include flex-row(10px);
+}
+
+.header-user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.user-tooltip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.user-tooltip-trigger {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.user-tooltip-content {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 6px 10px;
+  box-shadow: var(--shadow);
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.app-main {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.list-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+}

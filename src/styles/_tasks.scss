@@ -1,0 +1,127 @@
+.task-card {
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--card);
+  height: auto;
+  max-height: 300px;
+
+  h3 {
+    font-size: 18px;
+    margin-bottom: 6px;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+
+  p {
+    color: var(--muted);
+    line-height: 1.5;
+    min-width: 0;
+  }
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.task-title,
+.title-tooltip-trigger {
+  font-size: 18px;
+  font-weight: 600;
+  text-align: left;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.title-tooltip {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+
+  &-trigger {
+    background: none;
+    border: none;
+    padding: 0;
+    color: inherit;
+    cursor: pointer;
+    min-width: 0;
+  }
+
+  &-content {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 6px 10px;
+    box-shadow: var(--shadow);
+    white-space: normal;
+    z-index: 10;
+    max-width: 320px;
+  }
+}
+
+.status {
+  flex-shrink: 0;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+
+  &.todo {
+    background: #f3d18f;
+    color: #6b4200;
+  }
+
+  &.in_progress {
+    background: #bcdcff;
+    color: #1c3c72;
+  }
+
+  &.done {
+    background: #bde6cb;
+    color: #195131;
+  }
+}
+
+.task-description {
+  color: var(--muted);
+  line-height: 1.5;
+  min-width: 0;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 6px;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.task-meta {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.task-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-left: auto;
+}
