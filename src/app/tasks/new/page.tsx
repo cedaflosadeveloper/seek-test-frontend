@@ -17,5 +17,6 @@ export default async function NewTaskPage() {
   const cookieStore = await cookies();
   const token = cookieStore.get('task_app_token')?.value;
   if (!token) redirect('/login');
-  return <NewTaskClient />;
+  const userEmail = cookieStore.get('task_app_user')?.value ?? null;
+  return <NewTaskClient userEmail={userEmail} />;
 }

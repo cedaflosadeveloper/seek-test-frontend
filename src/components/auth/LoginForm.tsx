@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuthStore } from '@/state/authStore';
 import { useI18n } from '@/i18n/I18nProvider';
+import { Eye, EyeOff } from 'lucide-react';
 
 export const LoginForm = () => {
   const router = useRouter();
@@ -11,8 +12,10 @@ export const LoginForm = () => {
   const { t } = useI18n();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const isValid = Boolean(username.trim() && password.trim());
+  const showInvalidUsers = error?.toLowerCase() === 'invalid credentials';
 
   const onSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -41,17 +44,39 @@ export const LoginForm = () => {
       </div>
       <div className="form-row">
         <label htmlFor="password">{t('login.passwordLabel')}</label>
-        <input
-          id="password"
-          name="password"
-          type="password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-          placeholder="********"
-          required
-        />
+        <div className="input-with-icon">
+          <input
+            id="password"
+            name="password"
+            type={showPassword ? 'text' : 'password'}
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            placeholder="********"
+            required
+          />
+          <button
+            className="input-icon-button"
+            type="button"
+            onClick={() => setShowPassword((prev) => !prev)}
+            aria-label={showPassword ? t('login.hidePassword') : t('login.showPassword')}
+            aria-pressed={showPassword}
+          >
+            {showPassword ? <EyeOff size={18} aria-hidden="true" /> : <Eye size={18} aria-hidden="true" />}
+          </button>
+        </div>
       </div>
       {error ? <p className="error">{error}</p> : null}
+      {showInvalidUsers ? (
+        <div className="hint">
+          <p className="muted">{t('login.invalidUsersHint')}</p>
+          <div className="hint-list">
+            <span>user1</span>
+            <span>user2</span>
+            <span>user3</span>
+          </div>
+          <p className="muted">{t('login.invalidPasswordHint')}</p>
+        </div>
+      ) : null}
       <div className="form-actions">
         <button className="primary" type="submit" disabled={status === 'loading' || isSubmitting || !isValid}>
           {status === 'loading' || isSubmitting ? t('login.submitting') : t('login.submit')}

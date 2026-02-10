@@ -6,7 +6,13 @@ import { useI18n } from '@/i18n/I18nProvider';
 import { LocaleSwitch } from '@/components/common/LocaleSwitch';
 import { ThemeSwitch } from '@/components/common/ThemeSwitch';
 
-export const HeaderMenu = ({ actions }: { actions?: React.ReactNode }) => {
+export const HeaderMenu = ({
+  actions,
+  user
+}: {
+  actions?: React.ReactNode;
+  user?: string | null;
+}) => {
   const { t } = useI18n();
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -41,6 +47,12 @@ export const HeaderMenu = ({ actions }: { actions?: React.ReactNode }) => {
       </button>
       {open ? (
         <div className="menu-panel" role="menu">
+          {user ? (
+            <div className="menu-user">
+              <span className="menu-label">{t('common.loggedUser')}</span>{' '}
+              <span className="menu-user-value">{user}</span>
+            </div>
+          ) : null}
           <div className="menu-section">
             <span className="menu-label">{t('common.language')}</span>
             <LocaleSwitch />

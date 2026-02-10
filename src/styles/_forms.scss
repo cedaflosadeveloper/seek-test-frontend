@@ -21,6 +21,26 @@
   justify-content: flex-end;
 }
 
+.hint {
+  display: grid;
+  gap: 6px;
+}
+
+.hint-list {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+
+  span {
+    background: var(--bg-accent);
+    border-radius: 999px;
+    padding: 4px 10px;
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 600;
+  }
+}
+
 input,
 textarea,
 select {
@@ -31,6 +51,42 @@ select {
   font-size: 15px;
   font-family: inherit;
   background: var(--card);
+}
+
+.input-with-icon {
+  position: relative;
+  width: 100%;
+
+  input {
+    padding-right: 46px;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.input-icon-button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  color: var(--ink);
+  width: 60px;
+  height: 28px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  transition: color 0.2s ease, background 0.2s ease;
+
+  &:hover {
+    color: var(--primary);
+    background: rgba(29, 78, 216, 0.08);
+  }
 }
 
 select {

@@ -4,12 +4,14 @@ export const AppShell = ({
   title,
   leftSlot,
   subtitle,
+  menuUser,
   menuActions,
   children
 }: {
   title: string;
   leftSlot?: React.ReactNode;
   subtitle?: string;
+  menuUser?: string | null;
   menuActions?: React.ReactNode;
   children: React.ReactNode;
 }) => {
@@ -24,7 +26,7 @@ export const AppShell = ({
           </div>
         </div>
         <div className="header-actions">
-          <HeaderMenu actions={menuActions} />
+          <HeaderMenu actions={menuActions} user={menuUser} />
         </div>
       </header>
       <main className="app-main">{children}</main>

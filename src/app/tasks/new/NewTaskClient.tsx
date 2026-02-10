@@ -11,7 +11,7 @@ import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { createTaskAction } from '../actions';
 
-export const NewTaskClient = () => {
+export const NewTaskClient = ({ userEmail }: { userEmail?: string | null }) => {
   const router = useRouter();
   const { status } = useTaskStore();
   const { t } = useI18n();
@@ -40,6 +40,7 @@ export const NewTaskClient = () => {
   return (
     <AppShell
       title={t('taskNew.title')}
+      menuUser={userEmail}
       leftSlot={
         <Link className="icon-button" href="/tasks" aria-label={t('common.backToList')}>
           <ArrowLeft size={18} aria-hidden="true" />

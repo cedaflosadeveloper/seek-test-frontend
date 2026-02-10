@@ -41,6 +41,7 @@ export default async function EditTaskPage({ params }: Params) {
   const token = cookieStore.get('task_app_token')?.value;
   if (!token) redirect('/login');
 
+  const userEmail = cookieStore.get('task_app_user')?.value ?? null;
   const { id } = await params;
 
   let task: Task | null = null;
@@ -54,5 +55,5 @@ export default async function EditTaskPage({ params }: Params) {
     notFound();
   }
 
-  return <TaskEditClient initialTask={task} />;
+  return <TaskEditClient initialTask={task} userEmail={userEmail} />;
 }

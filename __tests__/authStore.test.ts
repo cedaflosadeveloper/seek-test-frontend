@@ -22,9 +22,9 @@ describe('auth store', () => {
   });
 
   it('fails on invalid credentials', async () => {
-    (loginAction as jest.Mock).mockRejectedValue(new Error('Credenciales invalidas'));
+    (loginAction as jest.Mock).mockResolvedValue({ error: 'Invalid credentials' });
     await useAuthStore.getState().login('user', 'wrong');
-    expect(useAuthStore.getState().error).toBe('Credenciales invalidas');
+    expect(useAuthStore.getState().error).toBe('Invalid credentials');
   });
 
   it('logs out', () => {

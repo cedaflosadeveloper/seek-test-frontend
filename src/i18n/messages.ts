@@ -5,6 +5,10 @@ export const messages = {
       usernameLabel: 'Usuario *',
       usernamePlaceholder: 'usuario',
       passwordLabel: 'Contrasena *',
+      showPassword: 'Mostrar contraseña',
+      hidePassword: 'Ocultar contraseña',
+      invalidUsersHint: 'Usuarios disponibles para ingresar:',
+      invalidPasswordHint: 'Contraseña: user1234',
       submit: 'Ingresar',
       submitting: 'Ingresando...'
     },
@@ -77,7 +81,8 @@ export const messages = {
       confirmation: 'Confirmacion',
       language: 'Idioma',
       selectOption: 'Selecciona una opcion',
-      menu: 'Menu'
+      menu: 'Menu',
+      loggedUser: 'Usuario logueado:'
     },
     theme: {
       label: 'Tema',
@@ -102,6 +107,10 @@ export const messages = {
       usernameLabel: 'User *',
       usernamePlaceholder: 'user',
       passwordLabel: 'Password *',
+      showPassword: 'Show password',
+      hidePassword: 'Hide password',
+      invalidUsersHint: 'Available users to sign in:',
+      invalidPasswordHint: 'Password: user1234',
       submit: 'Sign in',
       submitting: 'Signing in...'
     },
@@ -174,7 +183,8 @@ export const messages = {
       confirmation: 'Confirmation',
       language: 'Language',
       selectOption: 'Select an option',
-      menu: 'Menu'
+      menu: 'Menu',
+      loggedUser: 'Signed in user:'
     },
     theme: {
       label: 'Theme',

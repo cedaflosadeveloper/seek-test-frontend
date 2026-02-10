@@ -14,9 +14,10 @@ import type { Task } from '@/core/domain/task';
 
 type TaskEditClientProps = {
   initialTask: Task | null;
+  userEmail?: string | null;
 };
 
-export const TaskEditClient = ({ initialTask }: TaskEditClientProps) => {
+export const TaskEditClient = ({ initialTask, userEmail }: TaskEditClientProps) => {
   const router = useRouter();
   const { status } = useTaskStore();
   const { t } = useI18n();
@@ -47,6 +48,7 @@ export const TaskEditClient = ({ initialTask }: TaskEditClientProps) => {
   return (
     <AppShell
       title={t('taskEdit.title')}
+      menuUser={userEmail}
       leftSlot={
         <Link className="icon-button" href="/tasks" aria-label={t('common.backToList')}>
           <ArrowLeft size={18} aria-hidden="true" />

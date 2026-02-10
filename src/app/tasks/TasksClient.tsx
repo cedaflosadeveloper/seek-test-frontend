@@ -48,6 +48,7 @@ export const TasksClient = ({ initialTasks, initialUserEmail }: TasksClientProps
     <AppShell
       title={t('tasks.title')}
       subtitle={t('tasks.subtitle')}
+      menuUser={initialUserEmail}
       menuActions={
         <button className="menu-item danger" type="button" onClick={() => setConfirmLogout(true)}>
           <LogOut size={16} aria-hidden="true" />

@@ -6,6 +6,10 @@ import { loginAction } from '@/app/login/actions';
 /** Repositorio de auth que delega en Server Actions. */
 export const authApi: AuthRepository = {
   async login(input: LoginInput): Promise<LoginResult> {
-    return loginAction(input);
+    const result = await loginAction(input);
+    if ('error' in result) {
+      throw new Error(result.error);
+    }
+    return result;
   }
 };

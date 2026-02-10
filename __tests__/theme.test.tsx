@@ -152,12 +152,14 @@ describe('theme', () => {
     render(
       <I18nProvider locale="es">
         <ThemeProvider initialTheme="light">
-          <HeaderMenu actions={<button type="button">Salir</button>} />
+          <HeaderMenu actions={<button type="button">Salir</button>} user="user1" />
         </ThemeProvider>
       </I18nProvider>
     );
 
     await user.click(screen.getByRole('button', { name: 'Menu' }));
+    expect(screen.getByText('Usuario logueado:')).toBeInTheDocument();
+    expect(screen.getByText('user1')).toBeInTheDocument();
     expect(screen.getByText('Idioma')).toBeInTheDocument();
     expect(screen.getByText('Tema')).toBeInTheDocument();
     expect(screen.getByText('Salir')).toBeInTheDocument();
@@ -176,12 +178,14 @@ describe('theme', () => {
     render(
       <I18nProvider locale="es">
         <ThemeProvider initialTheme="light">
-          <HeaderMenu />
+          <HeaderMenu user="user2" />
         </ThemeProvider>
       </I18nProvider>
     );
 
     await user.click(screen.getByRole('button', { name: 'Menu' }));
+    expect(screen.getByText('Usuario logueado:')).toBeInTheDocument();
+    expect(screen.getByText('user2')).toBeInTheDocument();
     expect(screen.getByText('Idioma')).toBeInTheDocument();
     expect(screen.getByText('Tema')).toBeInTheDocument();
     expect(screen.queryByText('Salir')).not.toBeInTheDocument();

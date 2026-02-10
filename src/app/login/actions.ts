@@ -12,10 +12,14 @@ type LoginResponse = {
   user: { id: string; email: string; name: string };
 };
 
+type LoginError = {
+  error: string;
+};
+
 /**
  * Valida credenciales en el backend y persiste el token como cookie httpOnly.
  */
-export const loginAction = async (input: LoginInput): Promise<LoginResult> => {
+export const loginAction = async (input: LoginInput): Promise<LoginResult | LoginError> => {
   const response = await fetch(`${BACKEND_URL}/auth/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -31,7 +35,7 @@ export const loginAction = async (input: LoginInput): Promise<LoginResult> => {
           ? (data as any).message.join(', ')
           : (data as any).message
         : 'Credenciales invalidas';
-    throw new Error(message);
+    return { error: message };
   }
 
   const data = (await response.json()) as LoginResponse;

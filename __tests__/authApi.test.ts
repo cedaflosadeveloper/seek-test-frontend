@@ -15,9 +15,9 @@ describe('auth api', () => {
   });
 
   it('throws on invalid credentials', async () => {
-    (loginAction as jest.Mock).mockRejectedValue(new Error('Credenciales invalidas'));
+    (loginAction as jest.Mock).mockResolvedValue({ error: 'Invalid credentials' });
     await expect(authApi.login({ username: 'x', password: 'y' })).rejects.toThrow(
-      'Credenciales invalidas'
+      'Invalid credentials'
     );
   });
 });

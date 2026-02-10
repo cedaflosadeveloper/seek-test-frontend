@@ -68,6 +68,23 @@ describe('LoginForm', () => {
     (useAuthStore as any).mockImplementation(previousImpl);
   });
 
+  it('shows available users on invalid credentials', () => {
+    const previousImpl = (useAuthStore as any).getMockImplementation();
+    (useAuthStore as any).mockImplementation(() => ({
+      login: jest.fn(),
+      status: 'idle',
+      error: 'Invalid credentials'
+    }));
+    render(<LoginForm />);
+    expect(screen.getByText('Invalid credentials')).toBeInTheDocument();
+    expect(screen.getByText('Usuarios disponibles para ingresar:')).toBeInTheDocument();
+    expect(screen.getByText('user1')).toBeInTheDocument();
+    expect(screen.getByText('user2')).toBeInTheDocument();
+    expect(screen.getByText('user3')).toBeInTheDocument();
+    expect(screen.getByText('Contraseña: user1234')).toBeInTheDocument();
+    (useAuthStore as any).mockImplementation(previousImpl);
+  });
+
   it('does not navigate when store reports error', async () => {
     const user = userEvent.setup();
     (useAuthStore as any).getState = () => ({ error: 'error' });
@@ -101,5 +118,19 @@ describe('LoginForm', () => {
     await act(async () => {
       resolveLogin!();
     });
+  });
+
+  it('toggles password visibility', async () => {
+    const user = userEvent.setup();
+    render(<LoginForm />);
+
+    const passwordInput = screen.getByLabelText(/Contrasena/i) as HTMLInputElement;
+    expect(passwordInput.type).toBe('password');
+
+    await user.click(screen.getByRole('button', { name: 'Mostrar contraseña' }));
+    expect(passwordInput.type).toBe('text');
+
+    await user.click(screen.getByRole('button', { name: 'Ocultar contraseña' }));
+    expect(passwordInput.type).toBe('password');
   });
 });
