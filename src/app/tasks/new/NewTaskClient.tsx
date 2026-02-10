@@ -6,6 +6,7 @@ import { AppShell } from '@/components/layout/AppShell';
 import { TaskForm } from '@/components/tasks/TaskForm';
 import { DeleteConfirmModal } from '@/components/tasks/DeleteConfirmModal';
 import { useTaskStore } from '@/state/taskStore';
+import { useAuthStore } from '@/state/authStore';
 import { useI18n } from '@/i18n/I18nProvider';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
@@ -13,6 +14,7 @@ import { createTaskAction } from '../actions';
 
 export const NewTaskClient = ({ userEmail }: { userEmail?: string | null }) => {
   const router = useRouter();
+  const { logout } = useAuthStore();
   const { status } = useTaskStore();
   const { t } = useI18n();
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
@@ -22,12 +24,23 @@ export const NewTaskClient = ({ userEmail }: { userEmail?: string | null }) => {
     status: 'todo' | 'in_progress' | 'done';
   } | null>(null);
 
+  const handleSessionExpired = () => {
+    logout();
+    router.replace('/login');
+  };
+
+  const isSessionExpired = (error: unknown) => error instanceof Error && error.message === 'SESSION_EXPIRED';
+
   const handleCreate = async (data: { title: string; description: string; status: 'todo' | 'in_progress' | 'done' }) => {
     try {
       await createTaskAction({ title: data.title, description: data.description, status: data.status });
       window.sessionStorage.setItem('task_toast', t('tasks.actionSuccess'));
       router.push('/tasks');
-    } catch {
+    } catch (error) {
+      if (isSessionExpired(error)) {
+        handleSessionExpired();
+        return;
+      }
       setToast({ message: t('tasks.actionError'), type: 'error' });
       window.setTimeout(() => setToast(null), 2000);
     }

@@ -27,6 +27,13 @@ export const TasksClient = ({ initialTasks, initialUserEmail }: TasksClientProps
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
   const { t } = useI18n();
 
+  const handleSessionExpired = () => {
+    logout();
+    router.replace('/login');
+  };
+
+  const isSessionExpired = (error: unknown) => error instanceof Error && error.message === 'SESSION_EXPIRED';
+
   const showToast = (message: string, type: 'success' | 'error') => {
     setToast({ message, type });
     window.setTimeout(() => setToast(null), 2000);
@@ -77,7 +84,11 @@ export const TasksClient = ({ initialTasks, initialUserEmail }: TasksClientProps
             setTaskToDelete(null);
             router.refresh();
             showToast(t('tasks.actionSuccess'), 'success');
-          } catch {
+          } catch (error) {
+            if (isSessionExpired(error)) {
+              handleSessionExpired();
+              return;
+            }
             showToast(t('tasks.actionError'), 'error');
           }
         }}

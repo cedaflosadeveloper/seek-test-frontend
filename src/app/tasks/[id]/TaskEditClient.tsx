@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { AppShell } from '@/components/layout/AppShell';
 import { TaskForm } from '@/components/tasks/TaskForm';
 import { useTaskStore } from '@/state/taskStore';
+import { useAuthStore } from '@/state/authStore';
 import { deleteTaskAction, updateTaskAction } from '../actions';
 import { DeleteConfirmModal } from '@/components/tasks/DeleteConfirmModal';
 import { useI18n } from '@/i18n/I18nProvider';
@@ -19,11 +20,19 @@ type TaskEditClientProps = {
 
 export const TaskEditClient = ({ initialTask, userEmail }: TaskEditClientProps) => {
   const router = useRouter();
+  const { logout } = useAuthStore();
   const { status } = useTaskStore();
   const { t } = useI18n();
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
   const [taskToDelete, setTaskToDelete] = useState<{ id: string; title: string } | null>(null);
   const [pendingData, setPendingData] = useState<{ title: string; description: string; status: 'todo' | 'in_progress' | 'done' } | null>(null);
+
+  const handleSessionExpired = () => {
+    logout();
+    router.replace('/login');
+  };
+
+  const isSessionExpired = (error: unknown) => error instanceof Error && error.message === 'SESSION_EXPIRED';
 
   const handleSave = async (data: { title: string; description: string; status: 'todo' | 'in_progress' | 'done' }) => {
     if (!initialTask) return;
@@ -35,7 +44,11 @@ export const TaskEditClient = ({ initialTask, userEmail }: TaskEditClientProps) 
       });
       window.sessionStorage.setItem('task_toast', t('tasks.actionSuccess'));
       router.push('/tasks');
-    } catch {
+    } catch (error) {
+      if (isSessionExpired(error)) {
+        handleSessionExpired();
+        return;
+      }
       setToast({ message: t('tasks.actionError'), type: 'error' });
       window.setTimeout(() => setToast(null), 2000);
     }
@@ -90,7 +103,11 @@ export const TaskEditClient = ({ initialTask, userEmail }: TaskEditClientProps) 
             setTaskToDelete(null);
             window.sessionStorage.setItem('task_toast', t('tasks.actionSuccess'));
             router.push('/tasks');
-          } catch {
+          } catch (error) {
+            if (isSessionExpired(error)) {
+              handleSessionExpired();
+              return;
+            }
             setToast({ message: t('tasks.actionError'), type: 'error' });
             window.setTimeout(() => setToast(null), 2000);
           }
